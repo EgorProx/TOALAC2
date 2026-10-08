@@ -170,35 +170,55 @@ G → 0G | 1G | 0 | 1
 
 Преобразование выполняется командой Convert → Convert Right Linear Grammar to FA. На следующих скриншотах JFLAP пошагово строит автомат по правилам грамматики: каждому нетерминалу соответствует состояние (начальному символу `S` — начальное), добавляется одно конечное состояние, правило `X → cY` превращается в переход из `X` в `Y` по символу `c`, а правило `X → c` — в переход из `X` в конечное состояние по символу `c`.
 
-![Screenshot_25](screenshots/Screenshot_25.png)
+![Screenshot_44](screenshots/Screenshot_44.png)
 
-![Screenshot_26](screenshots/Screenshot_26.png)
+![Screenshot_45](screenshots/Screenshot_45.png)
 
-![Screenshot_27](screenshots/Screenshot_27.png)
+![Screenshot_46](screenshots/Screenshot_46.png)
 
-![Screenshot_28](screenshots/Screenshot_28.png)
+![Screenshot_47](screenshots/Screenshot_47.png)
 
-![Screenshot_29](screenshots/Screenshot_29.png)
+![Screenshot_48](screenshots/Screenshot_48.png)
 
-![Screenshot_30](screenshots/Screenshot_30.png)
+![Screenshot_49](screenshots/Screenshot_49.png)
 
-![Screenshot_31](screenshots/Screenshot_31.png)
+![Screenshot_50](screenshots/Screenshot_50.png)
 
-![Screenshot_32](screenshots/Screenshot_32.png)
+![Screenshot_51](screenshots/Screenshot_51.png)
 
-![Screenshot_33](screenshots/Screenshot_33.png)
+![Screenshot_52](screenshots/Screenshot_52.png)
 
-![Screenshot_34](screenshots/Screenshot_34.png)
+![Screenshot_53](screenshots/Screenshot_53.png)
 
-![Screenshot_35](screenshots/Screenshot_35.png)
+![Screenshot_54](screenshots/Screenshot_54.png)
+
+![Screenshot_55](screenshots/Screenshot_55.png)
+
+![Screenshot_56](screenshots/Screenshot_56.png)
+
+![Screenshot_57](screenshots/Screenshot_57.png)
+
+![Screenshot_58](screenshots/Screenshot_58.png)
+
+![Screenshot_59](screenshots/Screenshot_59.png)
+
+![Screenshot_60](screenshots/Screenshot_60.png)
+
+![Screenshot_61](screenshots/Screenshot_61.png)
+
+![Screenshot_62](screenshots/Screenshot_62.png)
+
+![Screenshot_63](screenshots/Screenshot_63.png)
+
+![Screenshot_64](screenshots/Screenshot_64.png)
 
 Все правила грамматики обработаны, построен КА из 9 состояний:
 
-![Screenshot_36](screenshots/Screenshot_36.png)
+![Screenshot_65](screenshots/Screenshot_65.png)
 
 Проверка полученного КА в режиме Multiple Run на тех же восьми цепочках, что и в части 1. Результаты совпали с ожидаемыми и с результатами КА, построенного из регулярного выражения:
 
-![Screenshot_37](screenshots/Screenshot_37.png)
+![Screenshot_67](screenshots/Screenshot_67.png)
 
 ### 3.3 Преобразование КА в регулярное выражение
 
@@ -206,17 +226,17 @@ G → 0G | 1G | 0 | 1
 
 **Этап 1. Объединение параллельных переходов.** Если между двумя состояниями есть несколько рёбер, они заменяются одним ребром, подписанным объединением символов (например, `0` и `1` заменяются на `0+1`).
 
-![Screenshot_39](screenshots/Screenshot_39.png)
+![Screenshot_68](screenshots/Screenshot_68.png)
 
 **Этап 2. Добавление недостающих переходов.** Для единообразия алгоритма между всеми парами состояний, где перехода нет, добавляются рёбра с подписью ∅. Поэтому на этом шаге граф выглядит насыщенным большим числом стрелок, хотя на язык они не влияют.
 
-![Screenshot_40](screenshots/Screenshot_40.png)
+![Screenshot_69](screenshots/Screenshot_69.png)
 
 **Этап 3. Последовательное удаление состояний.** Промежуточные состояния удаляются по одному: для каждой пары «входящее ребро — исходящее ребро» их подписи объединяются в новое выражение (с учётом петли удаляемого состояния), и оно добавляется к уже существующему ребру между этими состояниями. Процесс продолжается, пока не останутся только начальное и конечное состояния.
 
 На этом шаге в графе остались два состояния. Петля `0` у начального состояния соответствует ведущим нулям (`0*`), а ребро между состояниями содержит выражение, описывающее значащую часть числа. Рёбра с подписью ∅ означают отсутствие пути и в итоговое выражение не входят.
 
-![Screenshot_42](screenshots/Screenshot_42.png)
+![Screenshot_70](screenshots/Screenshot_70.png)
 
 **Этап 4. Формирование итогового выражения.** По двум оставшимся состояниям JFLAP объединяет петлю начального состояния и ребро в одно регулярное выражение:
 
